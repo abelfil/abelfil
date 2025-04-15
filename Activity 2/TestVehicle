@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class TestVehicle {
+
+    static class Vehicle {
+        String brand;
+        int speed;
+        String fuelType;
+
+        Vehicle(String b, int s, String f) {
+            brand = b;
+            speed = s;
+            fuelType = f;
+        }
+
+        void displayInfo() {
+            System.out.println("Brand: " + brand);
+            System.out.println("Speed: " + speed + " km/h");
+            System.out.println("Fuel Type: " + fuelType);
+        }
+    }
+
+    static class Car extends Vehicle {
+        int numDoors;
+
+        Car(String b, int s, String f, int d) {
+            super(b, s, f);
+            numDoors = d;
+        }
+
+        void displayInfo() {
+            super.displayInfo();
+            System.out.println("Number of Doors: " + numDoors);
+        }
+    }
+
+    static class Motorcycle extends Vehicle {
+        boolean hasSidecar;
+
+        Motorcycle(String b, int s, String f, boolean sc) {
+            super(b, s, f);
+            hasSidecar = sc;
+        }
+
+        void displayInfo() {
+            super.displayInfo();
+            System.out.println("Has Sidecar: " + (hasSidecar ? "Yes" : "No"));
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter Car Info:");
+        System.out.print("Brand: ");
+        String carBrand = input.nextLine();
+        System.out.print("Speed: ");
+        int carSpeed = input.nextInt();
+        input.nextLine();
+        System.out.print("Fuel Type: ");
+        String carFuel = input.nextLine();
+        System.out.print("Number of Doors: ");
+        int doors = input.nextInt();
+        input.nextLine();
+
+        Car myCar = new Car(carBrand, carSpeed, carFuel, doors);
+
+        System.out.println("\nEnter Motorcycle Info:");
+        System.out.print("Brand: ");
+        String motoBrand = input.nextLine();
+        System.out.print("Speed: ");
+        int motoSpeed = input.nextInt();
+        input.nextLine();
+        System.out.print("Fuel Type: ");
+        String motoFuel = input.nextLine();
+        System.out.print("Has Sidecar (true or false): ");
+        boolean sidecar = input.nextBoolean();
+
+        Motorcycle myMoto = new Motorcycle(motoBrand, motoSpeed, motoFuel, sidecar);
+
+        System.out.println("\n--- Car Info ---");
+        myCar.displayInfo();
+
+        System.out.println("\n--- Motorcycle Info ---");
+        myMoto.displayInfo();
+
+        input.close();
+    }
+}
